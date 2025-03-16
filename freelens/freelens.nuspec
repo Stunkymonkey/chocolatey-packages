@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>freelens</id>
+    <version>0.9.9</version>
+    <owners>Stunkymonkey</owners>
+    <title>Freelens</title>
+    <authors>Freelens Authors</authors>
+    <projectUrl>https://freelens.app/</projectUrl>
+    <iconUrl>https://freelensapp.github.io/images/freelens-logo.png</iconUrl>
+    <copyright>Copyright © 2024-2025 Freelens Authors. Copyright © 2022 OpenLens Authors.</copyright>
+    <tags>kubernetes k8s ide lens freelens opensource</tags>
+    <releaseNotes>https://github.com/freelensapp/freelens/releases/tag/v1.0.0</releaseNotes>
+    <licenseUrl>https://github.com/freelensapp/freelens/blob/main/LICENSE</licenseUrl>
+    <packageSourceUrl>https://github.com/Stunkymonkey/chocolatey-packages/tree/master/freelens</packageSourceUrl>
+    <summary>Freelens is a Kubernetes IDE that provides a graphical interface for managing and monitoring Kubernetes clusters</summary>
+    <description><![CDATA[Freelens is a Kubernetes IDE that provides a graphical interface for managing and monitoring Kubernetes clusters.
+
+**Please Note**: This is an automatically updated package. If you find it is out of date by more than a day or two, please contact the maintainer(s) and let them know the package is no longer updating correctly.
+]]></description>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>
