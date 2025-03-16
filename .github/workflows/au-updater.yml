@@ -1,0 +1,126 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+permissions:
+  contents: write
+  actions: write
+  attestations: write
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "master" branch
+  push:
+    branches: ["master"]
+
+  schedule:
+    - cron: "0 0 * * *"
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  # This workflow contains a single job called "build"
+
+  build:
+    name: Build
+    runs-on: windows-latest
+    env:
+      DOTNET_CLI_TELEMETRY_OPTOUT: 1
+      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+      DOTNET_NOLOGO: true
+      DOTNET_GENERATE_ASPNET_CERTIFICATE: false
+      DOTNET_ADD_GLOBAL_TOOLS_TO_PATH: false
+      DOTNET_MULTILEVEL_LOOKUP: 0
+      DOTNET_SYSTEM_CONSOLE_ALLOW_ANSI_COLOR_REDIRECTION: true
+      TERM: xterm
+      NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
+      Configuration: Release
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: "flcdrg/au-dotnet"
+          path: "autoupdate"
+          persist-credentials: false
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: autoupdate/global.json
+
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: ${{ github.workspace }}/.nuget/packages
+          key: ${{ runner.os }}-dotnet-${{ hashFiles('autoupdate/AutoUpdate/*.csproj') }}
+          restore-keys: |
+            ${{ runner.os }}-dotnet-
+
+      - name: Restore
+        run: dotnet restore
+        working-directory: autoupdate
+
+      - name: Build
+        run: dotnet build --no-restore
+        working-directory: autoupdate
+
+      - name: Test
+        run: dotnet test
+        working-directory: autoupdate
+
+      - uses: actions/checkout@v4
+        with:
+          repository: "flcdrg/chocolatey-au"
+          path: "chocolatey-au"
+          ref: "simplify"
+          persist-credentials: false
+
+      - name: Install
+        run: |
+          $module_name = 'Chocolatey-AU'
+
+          $module_dst  = "$Env:ProgramFiles\WindowsPowerShell\Modules\$module_name"
+
+          New-Item -ItemType Directory "$module_dst" -ErrorAction Ignore | Out-Null
+
+          Copy-Item -Recurse -Force ./src/* $module_dst -Verbose
+
+          Get-InstalledModule | Select-Object Name, Version, InstalledLocation
+
+          choco install chocolatey-community-validation.extension -y
+        shell: pwsh
+        working-directory: chocolatey-au
+
+      - uses: actions/checkout@v4
+        with:
+          path: "packages"
+
+      - name: Configure Git
+        run: |
+          git config user.email "stunkymonkey@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+        working-directory: packages
+
+      - name: Run
+        run: |
+          Get-Module -ListAvailable | Select-String "AU"
+          Dir $Env:ProgramFiles\WindowsPowerShell\Modules\Chocolatey-AU
+          dotnet run
+        working-directory: autoupdate/AutoUpdate
+        env:
+          PACKAGES_REPO: "${{ github.workspace }}\\packages"
+          github_api_key: ${{ secrets.GITHUB_TOKEN }} # GitHub API Key
+          api_key: ${{ secrets.API_KEY }} # Chocolatey API Key
+
+      - name: Status
+        run: |
+          git status
+
+          git push
+          git push -q --tags
+
+          git log --max-count 2 --pretty=medium
+
+          Get-ChildItem -Recurse *.nupkg | Select-Object -ExpandProperty FullName
+        working-directory: packages
