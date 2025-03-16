@@ -18,7 +18,6 @@ function global:au_GetLatest {
     @{
         URL64          = "https://github.com/freelensapp/freelens/releases/download/v$latestVersion/Freelens-$latestVersion-windows-amd64.msi"
         Version        = $latestVersion
-        ChecksumType64 = 'sha256'
     }
 }
 
