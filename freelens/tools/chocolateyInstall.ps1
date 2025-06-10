@@ -3,8 +3,8 @@
 $packageArgs = @{
   PackageName            = 'freelens'
   FileType               = 'msi'
-  Url64bit               = 'https://github.com/freelensapp/freelens/releases/download/v1.3.1/Freelens-1.3.1-windows-amd64.msi'
-  Checksum64             = '04b89add77475e3b0d002f1be906d0caf308b64ae8dc9cf4877a5a3ee3a973e0'
+  Url64bit               = 'https://github.com/freelensapp/freelens/releases/download/v1.3.2/Freelens-1.3.2-windows-amd64.msi'
+  Checksum64             = 'a638b6642f4e492fa1f4b03b52d821fe4a74ed894a8dabce697d35ad8344ace4'
   ChecksumType64         = 'sha256'
   SilentArgs             = '/qn'
   ValidExitCodes         = @(0)
