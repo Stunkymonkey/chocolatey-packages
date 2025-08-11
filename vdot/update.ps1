@@ -5,8 +5,8 @@ $releases = 'https://api.github.com/repos/The-Virtual-Desktop-Team/Virtual-Deskt
 function global:au_SearchReplace {
    @{
         ".\tools\chocolateyInstall.ps1" = @{
-            "(?i)(^\s*Url\s*=\s*)('.*')"   = "`$1'$($Latest.URL64)'"
-            "(?i)(^\s*Checksum\s*=\s*)('.*')" = "`$1'$($Latest.Checksum64)'"
+            "(?i)(^\s*Url\s*=\s*)('.*')"   = "`$1'$($Latest.URL)'"
+            "(?i)(^\s*Checksum\s*=\s*)('.*')" = "`$1'$($Latest.Checksum)'"
         }
     }
 }
