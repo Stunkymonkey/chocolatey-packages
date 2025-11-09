@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>vdot</id>
+    <version>3.0.2008.0</version>
+    <title>Virtual Desktop Optimization Tool (VDOT)</title>
+    <authors>The-Virtual-Desktop-Team</authors>
+    <owners>Stunkymonkey</owners>
+    <licenseUrl>https://github.com/The-Virtual-Desktop-Team/Virtual-Desktop-Optimization-Tool/blob/main/README.md</licenseUrl>
+    <projectUrl>https://github.com/The-Virtual-Desktop-Team/Virtual-Desktop-Optimization-Tool</projectUrl>
+    <packageSourceUrl>https://github.com/Stunkymonkey/chocolatey-packages/tree/master/VDOT</packageSourceUrl>
+    <tags>VDI optimization virtual-desktop Windows performance desktop</tags>
+    <description>
+      The Virtual Desktop Optimization Tool (VDOT) applies performance-related settings to Windows environments (VDI, AVD, stand-alone, server).
+    </description>
+  </metadata>
+</package>
