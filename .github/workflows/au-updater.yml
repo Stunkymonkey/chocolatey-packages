@@ -1,5 +1,3 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
 
 permissions:
@@ -8,19 +6,15 @@ permissions:
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "master" branch
   push:
     branches: ["master"]
 
   schedule:
     - cron: "0 0 * * *"
 
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
-  # This workflow contains a single job called "build"
-
   build:
     name: Build
     runs-on: windows-latest
@@ -37,36 +31,10 @@ jobs:
       Configuration: Release
 
     steps:
-      - uses: actions/checkout@v6
-        with:
-          repository: "flcdrg/au-dotnet"
-          path: "autoupdate"
-          persist-credentials: false
-
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v4
         with:
-          global-json-file: autoupdate/global.json
-
-      - name: Cache dependencies
-        uses: actions/cache@v4
-        with:
-          path: ${{ github.workspace }}/.nuget/packages
-          key: ${{ runner.os }}-dotnet-${{ hashFiles('autoupdate/AutoUpdate/*.csproj') }}
-          restore-keys: |
-            ${{ runner.os }}-dotnet-
-
-      - name: Restore
-        run: dotnet restore
-        working-directory: autoupdate
-
-      - name: Build
-        run: dotnet build --no-restore
-        working-directory: autoupdate
-
-      - name: Test
-        run: dotnet test
-        working-directory: autoupdate
+          dotnet-version: "10.0.x"
 
       - uses: actions/checkout@v6
         with:
@@ -97,14 +65,13 @@ jobs:
 
       - name: Configure Git
         run: |
-          git config user.email "stunkymonkey@users.noreply.github.com"
-          git config user.name "github-actions[bot]"
+          git config user.email "david@gardiner.net.au"
+          git config user.name "David Gardiner"
         working-directory: packages
 
       - name: Run
         run: |
-          dotnet run
-        working-directory: autoupdate/AutoUpdate
+          dnx flcdrg.au
         env:
           PACKAGES_REPO: "${{ github.workspace }}\\packages"
           github_api_key: ${{ secrets.GITHUB_TOKEN }} # GitHub API Key
