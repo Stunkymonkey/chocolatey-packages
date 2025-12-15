@@ -71,7 +71,7 @@ jobs:
 
       - name: Run
         run: |
-          dnx flcdrg.au
+          dnx --yes flcdrg.au
         env:
           PACKAGES_REPO: "${{ github.workspace }}\\packages"
           github_api_key: ${{ secrets.GITHUB_TOKEN }} # GitHub API Key
