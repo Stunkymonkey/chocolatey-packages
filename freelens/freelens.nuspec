@@ -10,14 +10,14 @@
     <iconUrl>https://freelensapp.github.io/images/freelens-logo.png</iconUrl>
     <copyright>Copyright © 2024-2025 Freelens Authors. Copyright © 2022 OpenLens Authors.</copyright>
     <tags>kubernetes k8s ide lens freelens opensource</tags>
-    <releaseNotes>https://github.com/freelensapp/freelens/releases/tag/v1.0.0</releaseNotes>
+    <releaseNotes>https://github.com/freelensapp/freelens/releases/tag/v1.9.0</releaseNotes>
     <licenseUrl>https://github.com/freelensapp/freelens/blob/main/LICENSE</licenseUrl>
     <packageSourceUrl>https://github.com/Stunkymonkey/chocolatey-packages/tree/master/freelens</packageSourceUrl>
     <summary>Freelens is a Kubernetes IDE that provides a graphical interface for managing and monitoring Kubernetes clusters</summary>
     <description><![CDATA[Freelens is a Kubernetes IDE that provides a graphical interface for managing and monitoring Kubernetes clusters.
 
 **Please Note**: This is an automatically updated package. If you find it is out of date by more than a day or two, please contact the maintainer(s) and let them know the package is no longer updating correctly.
-]]></description>
+]]>    </description>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
