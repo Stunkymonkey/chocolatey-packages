@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>wdot</id>
+    <version>1.1</version>
+    <title>Windows Desktop Optimization Tool (WDOT)</title>
+    <authors>The-Virtual-Desktop-Team</authors>
+    <owners>Stunkymonkey</owners>
+    <licenseUrl>https://github.com/The-Virtual-Desktop-Team/Windows-Desktop-Optimization-Tool/blob/main/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/The-Virtual-Desktop-Team/Windows-Desktop-Optimization-Tool</projectUrl>
+    <packageSourceUrl>https://github.com/Stunkymonkey/chocolatey-packages/tree/master/wdot</packageSourceUrl>
+    <tags>VDI optimization virtual-desktop Windows performance desktop</tags>
+    <description>
+      The Windows Desktop Optimization Tool (WDOT) applies performance-related settings to Windows Client and Server desktop environments.
+    </description>
+  </metadata>
+</package>
